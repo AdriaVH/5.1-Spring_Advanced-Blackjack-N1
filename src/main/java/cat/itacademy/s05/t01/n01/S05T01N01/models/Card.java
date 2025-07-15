@@ -1,6 +1,11 @@
 package cat.itacademy.s05.t01.n01.S05T01N01.models;
 
-public class Card {
+public record Card(Card.Rank rank, Card.Suit suit) {
+
+    @Override
+    public String toString() {
+        return rank + " of " + suit;
+    }
 
     public enum Suit {
         HEARTS, DIAMONDS, CLUBS, SPADES
@@ -19,30 +24,5 @@ public class Card {
         public int getValue() {
             return value;
         }
-    }
-
-    private final Suit suit;
-    private final Rank rank;
-
-    public Card(Suit suit, Rank rank) {
-        this.suit = suit;
-        this.rank = rank;
-    }
-
-    public Suit getSuit() {
-        return suit;
-    }
-
-    public Rank getRank() {
-        return rank;
-    }
-
-    public int getValue() {
-        return rank.getValue();
-    }
-
-    @Override
-    public String toString() {
-        return rank + " of " + suit;
     }
 }
