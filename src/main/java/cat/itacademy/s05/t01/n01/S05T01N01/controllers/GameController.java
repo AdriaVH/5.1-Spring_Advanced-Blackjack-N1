@@ -1,6 +1,5 @@
 package cat.itacademy.s05.t01.n01.S05T01N01.controllers;
 
-import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.mappers.GameMapper;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.GameCreateRequestDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.PlayRequestDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.GameCreateResponseDTO;
@@ -23,23 +22,20 @@ public class GameController {
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<GameCreateResponseDTO> createGame(@RequestBody GameCreateRequestDTO request) {
-        return gameService.createGame(request.playerId())
-                .map(GameMapper::toGameCreateResponse);
+        return gameService.createGame(request);
     }
 
     // Get game details (GET /game/{id})
     @GetMapping("/{id}")
     public Mono<GameDetailsResponseDTO> getGameDetails(@PathVariable String id) {
-        return gameService.getGameById(id)
-                .map(GameMapper::toGameDetailsResponse);
+        return gameService.getGameDetails(id);
     }
 
     // Play a move (POST /game/{id}/play)
     @PostMapping("/{id}/play")
     public Mono<GamePlayResponseDTO> playMove(@PathVariable String id,
                                               @RequestBody PlayRequestDTO playRequestDTO) {
-        return gameService.playMove(id, playRequestDTO)
-                .map(game -> GameMapper.toGamePlayResponse(game, "Move played"));
+        return gameService.playMove(id, playRequestDTO);
     }
 
     // Delete a game (DELETE /game/{id}/delete)
