@@ -1,7 +1,9 @@
 package cat.itacademy.s05.t01.n01.S05T01N01.services;
 
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.mappers.PlayerMapper;
+import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.PlayerCreateRequestDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.PlayerUpdateRequestDTO;
+import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.PlayerCreateResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.PlayerRankingResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.PlayerResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.models.Player;
@@ -17,7 +19,22 @@ public class PlayerService {
     public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
+    public Mono<PlayerCreateResponseDTO> createPlayer(PlayerCreateRequestDTO request) {
+        Player player = new Player();
+        player.setName(request.name());
+        player.setBalance(request.balance());
+        player.setGamesPlayed(0);
+        player.setGamesWon(0);
 
+        return playerRepository.save(player)
+                .map(saved -> new PlayerCreateResponseDTO(
+                        saved.getId(),
+                        saved.getName(),
+                        saved.getBalance(),
+                        saved.getGamesWon(),
+                        saved.getGamesPlayed()
+                ));
+    }
     public Mono<PlayerResponseDTO> updatePlayerName(Long playerId, PlayerUpdateRequestDTO updateRequest) {
         return playerRepository.findById(playerId)
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("Player not found with ID: " + playerId)))

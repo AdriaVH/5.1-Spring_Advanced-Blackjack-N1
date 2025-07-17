@@ -56,8 +56,14 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.26</version> <!-- Use the latest stable version -->
-			<scope>provided</scope>
+			<version>1.18.26</version>
+			<scope>provided</scope>  <!-- or remove scope completely -->
+		</dependency>
+		<dependency>
+			<groupId>io.asyncer</groupId>
+			<artifactId>r2dbc-mysql</artifactId>
+			<version>1.4.1</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -72,6 +78,26 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version> <!-- use latest stable -->
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.30</version>
+						</path>
+					</annotationProcessorPaths>
+					<compilerArgs>
+						<arg>-parameters</arg>
+					</compilerArgs>
+					<source>17</source>  <!-- or your Java version -->
+					<target>17</target>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 

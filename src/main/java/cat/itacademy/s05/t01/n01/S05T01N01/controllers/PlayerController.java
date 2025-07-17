@@ -1,5 +1,7 @@
 package cat.itacademy.s05.t01.n01.S05T01N01.controllers;
 
+import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.PlayerCreateRequestDTO;
+import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.PlayerCreateResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.PlayerRankingResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.PlayerResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.PlayerUpdateRequestDTO;
@@ -15,6 +17,10 @@ public class PlayerController {
 
     private final PlayerService playerService;
 
+    @PostMapping
+    public Mono<PlayerCreateResponseDTO> createPlayer(@RequestBody PlayerCreateRequestDTO request) {
+       return playerService.createPlayer(request);
+    }
     // Update player name (PUT /player/{playerId})
     @PutMapping("/{playerId}")
     public Mono<PlayerResponseDTO> updatePlayerName(@PathVariable Long playerId,

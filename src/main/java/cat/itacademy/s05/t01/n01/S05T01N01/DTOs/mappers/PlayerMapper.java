@@ -11,8 +11,7 @@ public class PlayerMapper {
         if (player == null) return null;
         return new PlayerResponseDTO(
                 player.getId(),
-                player.getName(),
-                player.getBalance()
+                player.getName()
         );
     }
 
