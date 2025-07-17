@@ -8,6 +8,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
 
   mongo-express:
     image: mongo-express
@@ -20,11 +22,8 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
       ME_CONFIG_BASICAUTH: false
 
-
-  # MySQL container
   mysql:
     image: mysql:8.0
-    container_name: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -32,19 +31,5 @@ services:
       MYSQL_PASSWORD: root
     ports:
       - 3306:3306
-
-  # Your Spring WebFlux app
-  myapp:
-    build: .
-    container_name: spring-webflux-app
-    restart: on-failure
-    depends_on:
-      - mongo
-      - mysql
-    ports:
-      - 8080:8080
-    environment:
-      SPRING_DATA_MONGODB_URI: mongodb://root:root@mongo:27017/test
-      SPRING_R2DBC_URL: r2dbc:mysql://root:root@mysql:3306/blackjack
-      SPRING_R2DBC_USERNAME: root
-      SPRING_R2DBC_PASSWORD: root
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

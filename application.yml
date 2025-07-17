@@ -8,4 +8,4 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://localhost:27017/game_blackjack
+      uri: mongodb://root:root@localhost:27017/game_blackjack?authSource=admin

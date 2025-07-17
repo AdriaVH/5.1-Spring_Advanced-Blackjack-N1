@@ -3,6 +3,7 @@ package cat.itacademy.s05.t01.n01.S05T01N01.services;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.*;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.*;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.mappers.GameMapper;
+import cat.itacademy.s05.t01.n01.S05T01N01.models.Deck;
 import cat.itacademy.s05.t01.n01.S05T01N01.models.Game;
 import cat.itacademy.s05.t01.n01.S05T01N01.models.Game.MoveType;
 import cat.itacademy.s05.t01.n01.S05T01N01.repositories.GameRepository;
@@ -35,8 +36,12 @@ public class GameService {
                     game.setCreatedAt(Instant.now());
                     game.setUpdatedAt(Instant.now());
                     game.setMoveHistory(new ArrayList<>());
-                    game.getDeck().initialize();
-                    game.getDeck().shuffle();
+
+                    Deck deck = new Deck();
+                    deck.initialize();
+                    deck.shuffle();
+                    game.setDeck(deck);
+
                     game.setPlayerHand(new ArrayList<>());
                     game.setDealerHand(new ArrayList<>());
                     game.setBetAmount(0);
