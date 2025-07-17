@@ -63,8 +63,8 @@
 			<groupId>io.asyncer</groupId>
 			<artifactId>r2dbc-mysql</artifactId>
 			<version>1.4.1</version>
-			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
