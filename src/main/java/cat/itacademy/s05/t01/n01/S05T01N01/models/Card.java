@@ -1,10 +1,18 @@
 package cat.itacademy.s05.t01.n01.S05T01N01.models;
 
-public record Card(Card.Rank rank, Card.Suit suit) {
+public record Card(Card.Rank rank, Card.Suit suit, boolean faceUp) {
+
+    public Card(Card.Rank rank, Card.Suit suit) {
+        this(rank, suit, true); // default faceUp = true
+    }
 
     @Override
     public String toString() {
-        return rank + " of " + suit;
+        if (faceUp) {
+            return rank + " of " + suit;
+        } else {
+            return "Face Down Card";
+        }
     }
 
     public enum Suit {

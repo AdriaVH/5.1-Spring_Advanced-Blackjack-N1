@@ -1,13 +1,15 @@
 package cat.itacademy.s05.t01.n01.S05T01N01.controllers;
 
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.PlayerCreateRequestDTO;
+import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.PlayerUpdateRequestDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.PlayerCreateResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.PlayerRankingResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.PlayerResponseDTO;
-import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.PlayerUpdateRequestDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.services.PlayerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -18,19 +20,22 @@ public class PlayerController {
     private final PlayerService playerService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<PlayerCreateResponseDTO> createPlayer(@RequestBody PlayerCreateRequestDTO request) {
-       return playerService.createPlayer(request);
+        return playerService.createPlayer(request)
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not create player")));
     }
-    // Update player name (PUT /player/{playerId})
+
     @PutMapping("/{playerId}")
     public Mono<PlayerResponseDTO> updatePlayerName(@PathVariable Long playerId,
                                                     @RequestBody PlayerUpdateRequestDTO request) {
-        return playerService.updatePlayerName(playerId, request);
+        return playerService.updatePlayerName(playerId, request)
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Player not found")));
     }
 
-    // Get ranking of players (GET /ranking)
-    @GetMapping("/ranking")
+    @GetMapping("/{id}/ranking")
     public Mono<PlayerRankingResponseDTO> getPlayerRanking(@PathVariable Long id) {
-        return playerService.getPlayerRanking(id);
+        return playerService.getPlayerRanking(id)
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Ranking for player not found")));
     }
 }
