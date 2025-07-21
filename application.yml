@@ -1,6 +1,6 @@
 spring:
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/blackjack
+    url: r2dbc:mysql://localhost:3307/blackjack
     username: root
     password: root
     properties:

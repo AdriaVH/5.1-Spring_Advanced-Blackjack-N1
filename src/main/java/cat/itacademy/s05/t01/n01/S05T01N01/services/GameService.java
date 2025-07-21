@@ -66,6 +66,11 @@ public class GameService {
     public Mono<GamePlayResponseDTO> playMove(String gameId, PlayRequestDTO request) {
         return gameRepository.findById(gameId)
                 .flatMap(game -> {
+                    // Check if game status disallows further moves
+                    if (game.getStatus() == Game.GameStatus.PLAYER_BUST || game.getStatus() == Game.GameStatus.FINISHED) {
+                        return Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "No more moves allowed, player is busted or game finished"));
+                    }
+
                     addMoveToHistory(game, request.move());
                     game.setUpdatedAt(Instant.now());
                     game.setBetAmount(request.betAmount());
@@ -79,6 +84,7 @@ public class GameService {
                 })
                 .map(game -> GameMapper.toGamePlayResponse(game, "Move played"));
     }
+
 
     public Mono<Void> deleteGame(String id) {
         return gameRepository.existsById(id)
