@@ -84,8 +84,8 @@ public class GameController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteGame(@PathVariable String id) {
-        return gameService.deleteGame(id)
-                .then();  // just return completion signal
+        return gameService.deleteGame(id);
     }
-
 }
+
+

@@ -1,5 +1,8 @@
 package cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses;
 
-public record PlayerRankingResponseDTO (Long id, String name, int gamesWon, int gamesPlayed, int rank){
 
-}
+public record PlayerRankingResponseDTO(
+        String playerName,
+        String winPercentage,
+        String position // e.g. "1st", "2nd", "Last"
+) {}

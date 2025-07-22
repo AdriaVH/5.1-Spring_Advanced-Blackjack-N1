@@ -12,7 +12,11 @@ public class GameMapper {
                 game.getId(),
                 game.getPlayerId(),
                 game.getStatus(),
-                game.getBetAmount()
+                game.getPlayerHand(),
+                game.getDealerHand(),
+                game.getMoveHistory(),
+                game.getBetAmount(),
+                "Game created successfully"
         );
     }
 

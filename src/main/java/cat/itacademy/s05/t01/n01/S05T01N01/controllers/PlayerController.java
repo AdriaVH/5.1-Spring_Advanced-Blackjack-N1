@@ -10,32 +10,33 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/player")
 @RequiredArgsConstructor
 public class PlayerController {
 
     private final PlayerService playerService;
 
-    @PostMapping
+    @PostMapping("/player")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<PlayerCreateResponseDTO> createPlayer(@RequestBody PlayerCreateRequestDTO request) {
         return playerService.createPlayer(request)
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not create player")));
     }
 
-    @PutMapping("/{playerId}")
+    @PutMapping("/player/{playerId}")
     public Mono<PlayerResponseDTO> updatePlayerName(@PathVariable Long playerId,
                                                     @RequestBody PlayerUpdateRequestDTO request) {
         return playerService.updatePlayerName(playerId, request)
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Player not found")));
     }
 
-    @GetMapping("/{id}/ranking")
-    public Mono<PlayerRankingResponseDTO> getPlayerRanking(@PathVariable Long id) {
-        return playerService.getPlayerRanking(id)
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Ranking for player not found")));
+    @GetMapping("/ranking")
+    public Flux<PlayerRankingResponseDTO> getAllPlayersRanking() {
+        return playerService.getAllPlayersRanking()
+                .switchIfEmpty(Flux.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "No players found")));
     }
+
 }
