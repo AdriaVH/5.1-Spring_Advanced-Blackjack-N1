@@ -30,10 +30,6 @@ src
 ├── services/ # Business logic and helpers
 └── tests/ # Unit and integration tests
 
-yaml
-Copiar
-Editar
-
 ---
 
 ## 🚀 Getting Started
@@ -42,18 +38,16 @@ Editar
 
 ```bash
 git clone https://github.com/AdriaVH/5.1-Spring_Advanced-Blackjack-N1.git
-cd 5.1-Spring_Advanced-Blackjack-N1
+cd 5.1-Spring_Advanced-Blackjack-N
+```
 2️⃣ Start the databases (MySQL + MongoDB)
-bash
-Copiar
-Editar
+```bash
 docker-compose up -d
+```
 3️⃣ Run the application
-bash
-Copiar
-Editar
+```bash
 ./mvnw spring-boot:run
-
+```
 🔌 API Endpoints
 🎮 /games
 Method	Endpoint	Description
