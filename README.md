@@ -19,18 +19,27 @@ A reactive Blackjack game API using Spring WebFlux, R2DBC with MySQL, MongoDB fo
 
 ---
 
-## 🗂️ Project Structure
+### 📁 Project Structure
 
-src
-├── controllers/ # REST Controllers
-├── DTOs/ # Request/Response DTOs + mappers
-├── exceptions/ # Custom exception classes
-├── models/ # Entities (Mongo & MySQL)
-├── repositories/ # R2DBC and Mongo repositories
-├── services/ # Business logic and helpers
-└── tests/ # Unit and integration tests
-
----
+S05T01N01/
+├── src/
+│ ├── main/
+│ │ ├── java/
+│ │ │ └── cat/itacademy/s05/t01/n01/S05T01N01/
+│ │ │ ├── controllers/ # REST controllers for Player and Game APIs
+│ │ │ ├── DTOs/ # Data Transfer Objects (requests, responses, mappers)
+│ │ │ ├── exceptions/ # Custom exceptions
+│ │ │ ├── models/ # Entity models (Player, Game)
+│ │ │ ├── repositories/ # Reactive repositories for MongoDB and MySQL
+│ │ │ ├── services/ # Business logic services
+│ │ │ └── S05T01N01Application.java # Main Spring Boot application
+│ │ └── resources/
+│ │ ├── application.yml # Application configuration (DB, ports, etc.)
+│ │ └── init.sql # MySQL DB initialization script
+│ └── test/ # Test classes and integration tests
+├── docker-compose.yml # Docker Compose file for MongoDB and MySQL
+├── pom.xml # Maven project file (dependencies & build)
+└── README.md # Project documentation (this file)
 
 ## 🚀 Getting Started
 
