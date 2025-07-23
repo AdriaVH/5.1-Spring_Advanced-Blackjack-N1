@@ -11,9 +11,7 @@ import cat.itacademy.s05.t01.n01.S05T01N01.exceptions.PlayerNotFoundException;
 import cat.itacademy.s05.t01.n01.S05T01N01.models.*;
 import cat.itacademy.s05.t01.n01.S05T01N01.repositories.GameRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 import java.time.Instant;
@@ -50,23 +48,22 @@ public class GameService {
         return gameRepository.findById(gameId)
                 .switchIfEmpty(Mono.error(new GameNotFoundException("Game not found")))
                 .flatMap(game -> {
-                    // Always return Mono<Game> here
+
                     if (gameMoveService.isGameOver(game)) {
                         // Game is over, just return game without applying moves
                         return Mono.just(game);
                     }
-                    // Deduct bet if needed and then continue
+
                     return playerService.deductBetIfNeeded(game, request.betAmount())
                             .thenReturn(game);
                 })
                 .flatMap(game -> {
-                    // If game already over, return GamePlayResponseDTO immediately
+
                     if (gameMoveService.isGameOver(game)) {
                         return Mono.just(GameMapper.toGamePlayResponse(game,
                                 "Game is already over with status: " + game.getStatus()));
                     }
 
-                    // Apply the move since game is active
                     addMoveToHistory(game, request.move());
                     game.setUpdatedAt(Instant.now());
                     game.setBetAmount(request.betAmount());

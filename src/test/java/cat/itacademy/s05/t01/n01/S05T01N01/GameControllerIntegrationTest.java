@@ -1,13 +1,15 @@
 package cat.itacademy.s05.t01.n01.S05T01N01;
 
-
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.GameCreateRequestDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.requests.PlayRequestDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.GameCreateResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.GameDetailsResponseDTO;
 import cat.itacademy.s05.t01.n01.S05T01N01.DTOs.responses.GamePlayResponseDTO;
+import cat.itacademy.s05.t01.n01.S05T01N01.models.Player;
 import cat.itacademy.s05.t01.n01.S05T01N01.models.Game;
+import cat.itacademy.s05.t01.n01.S05T01N01.repositories.PlayerRepository;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,10 +24,32 @@ public class GameControllerIntegrationTest {
     @Autowired
     private WebTestClient webTestClient;
 
+    @Autowired
+    private PlayerRepository playerRepository;
+
+    private Long playerId;
+
+    @BeforeEach
+    void setupPlayer() {
+        // Clear all players (optional)
+        playerRepository.deleteAll().block();
+
+        // Create a new player before each test
+        Player player = new Player();
+        player.setName("Test Player");
+        player.setBalance(1000.0);
+        player.setGamesPlayed(0);
+        player.setGamesWon(0);
+
+        Player savedPlayer = playerRepository.save(player).block();
+        playerId = savedPlayer.getId();
+    }
+
     @Test
     void testFullGameFlow() {
-        // 1. Create a game
-        GameCreateRequestDTO createRequest = new GameCreateRequestDTO(1L); // assuming betAmount
+        // 1. Create a game using the dynamically created player's ID
+        GameCreateRequestDTO createRequest = new GameCreateRequestDTO(playerId);
+
         GameCreateResponseDTO createResponse = webTestClient.post()
                 .uri("/games")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -53,7 +77,7 @@ public class GameControllerIntegrationTest {
         assertThat(detailsResponse).as("Game details").isNotNull();
         assertThat(detailsResponse.gameId()).isEqualTo(gameId);
 
-        // 3. Play a move
+        // 3. Play a move (HIT)
         PlayRequestDTO playRequest = new PlayRequestDTO(Game.MoveType.HIT, 50);
 
         GamePlayResponseDTO playResponse = webTestClient.post()
@@ -75,5 +99,4 @@ public class GameControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isNoContent();
     }
-
 }

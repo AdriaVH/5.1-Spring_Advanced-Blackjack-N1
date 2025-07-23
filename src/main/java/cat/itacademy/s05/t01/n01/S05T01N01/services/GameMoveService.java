@@ -13,7 +13,7 @@ public class GameMoveService {
         switch (move) {
             case HIT -> playerHit(game);
             case STAND -> playerStand(game);
-            default -> throw new IllegalArgumentException("Unsupported move: " + move);
+            default -> throw new IllegalArgumentException("Unsupported move: " + move + ". Only HIT or STAND allowed.");
         }
     }
 
@@ -65,7 +65,7 @@ public class GameMoveService {
             Card card = dealerHand.get(i);
             if (!card.faceUp()) {
                 dealerHand.set(i, new Card(card.rank(), card.suit(), true));
-                break;
+                return;
             }
         }
     }

@@ -65,7 +65,7 @@ public class PlayerService {
         return playerRepository.findById(game.getPlayerId())
                 .switchIfEmpty(Mono.error(new PlayerNotFoundException("Player not found with ID: " + game.getPlayerId())))
                 .flatMap(player -> {
-                    int balance = safeBalance(player);
+                    Double balance = safeBalance(player);
                     if (balance < betAmount)
                         return Mono.error(new InsufficientBalanceException(balance, betAmount));
 
@@ -137,8 +137,8 @@ public class PlayerService {
                 || game.getStatus() == Game.GameStatus.DEALER_BUST;
     }
 
-    private int safeBalance(Player player) {
-        return player.getBalance() != null ? player.getBalance() : 0;
+    private double safeBalance(Player player) {
+        return player.getBalance() != null ? player.getBalance() : 0.0;
     }
 
 }

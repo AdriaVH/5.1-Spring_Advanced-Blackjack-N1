@@ -11,7 +11,7 @@ public class Player {
     @Id
     private long id;
     private String name;
-    private Integer balance;
+    private Double balance;
     private int gamesWon;
     private int gamesPlayed;
 

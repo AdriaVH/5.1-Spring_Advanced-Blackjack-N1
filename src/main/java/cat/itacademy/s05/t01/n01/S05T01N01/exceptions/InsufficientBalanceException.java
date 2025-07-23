@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 public class InsufficientBalanceException extends ResponseStatusException {
-    public InsufficientBalanceException(int currentBalance, int attemptedBet) {
+    public InsufficientBalanceException(Double currentBalance, int attemptedBet) {
         super(HttpStatus.BAD_REQUEST,
                 "Insufficient balance. Current: " + currentBalance + ", Required: " + attemptedBet);
     }

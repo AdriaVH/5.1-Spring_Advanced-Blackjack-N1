@@ -18,6 +18,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -38,7 +39,16 @@ public class GameControllerTest {
     @Test
     public void createGame_ReturnsCreatedGame() {
         GameCreateRequestDTO requestDTO = new GameCreateRequestDTO(123L);
-        GameCreateResponseDTO responseDTO = new GameCreateResponseDTO("game123", 123L, Game.GameStatus.PLAYER_TURN, 1000 );
+        GameCreateResponseDTO responseDTO = new GameCreateResponseDTO(
+                "game123",
+                123L,
+                Game.GameStatus.PLAYER_TURN,
+                new ArrayList<>(),          // playerHand
+                new ArrayList<>(),          // dealerHand
+                new ArrayList<>(),          // moveHistory
+                1000,                       // betAmount
+                "Game created successfully" // message
+        );
 
         when(gameService.createGame(any(GameCreateRequestDTO.class))).thenReturn(Mono.just(responseDTO));
 
