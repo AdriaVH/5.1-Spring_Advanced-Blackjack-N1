@@ -40,67 +40,92 @@ src
 git clone https://github.com/AdriaVH/5.1-Spring_Advanced-Blackjack-N1.git
 cd 5.1-Spring_Advanced-Blackjack-N
 ```
-2️⃣ Start the databases (MySQL + MongoDB)
+### 2️⃣ Start the databases (MySQL + MongoDB)
 ```bash
 docker-compose up -d
 ```
-3️⃣ Run the application
+### 3️⃣ Run the application
 ```bash
 ./mvnw spring-boot:run
 ```
-🔌 API Endpoints
-🎮 /games
-Method	Endpoint	Description
-POST	/games	Create new game
-GET	/games/{id}	Get game details
-POST	/games/{id}/play	Make a move (HIT / STAND)
-DELETE	/games/{id}	Delete game
+## 🔌 API Endpoints
 
-👤 /player
-Method	Endpoint	Description
-POST	/player	Create new player
-PUT	/player/{id}	Update player name
-GET	/ranking	Get win-rate ranking of players
+### 🎮 `/games`
 
-📚 Swagger UI
-After running the app, access API docs:
+| Method | Endpoint           | Description                 |
+|--------|--------------------|-----------------------------|
+| POST   | `/games`           | Create new game             |
+| GET    | `/games/{id}`      | Get game details            |
+| POST   | `/games/{id}/play` | Make a move (HIT / STAND)   |
+| DELETE | `/games/{id}`      | Delete game                 |
 
-Swagger UI: http://localhost:8080/swagger-ui.html
+### 👤 `/player`
 
-OpenAPI JSON: http://localhost:8080/v3/api-docs
+| Method | Endpoint         | Description                  |
+|--------|------------------|------------------------------|
+| POST   | `/player`        | Create new player            |
+| PUT    | `/player/{id}`   | Update player name           |
+| GET    | `/ranking`       | Get win-rate ranking of players |
 
-🐳 Docker Compose
-yaml
-Copiar
-Editar
-version: '3.8'
 
-✅ Testing
+### 📚 Swagger UI
+
+After running the app, access API docs here:
+
+- **Swagger UI:** [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)  
+- **OpenAPI JSON:** [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
+
+---
+---
+
+### ✅ Testing
+
 Tests are written using:
 
-WebTestClient for integration tests
-
-Mockito for mocking
-
-StepVerifier for Reactor stream assertions
+- **WebTestClient** for integration tests  
+- **Mockito** for mocking  
+- **StepVerifier** for Reactor stream assertions  
 
 Example test flow:
 
-Create player
+1. Create player  
+2. Create game  
+3. Play moves  
+4. Verify responses and stats
 
-Create game
+---
 
-Play moves
+### 🧠 Notes
 
-Verify responses and stats
+- Player balance uses **`double`** type with null-safe helpers  
+- **MongoDB** stores the dynamic, nested game state  
+- **MySQL** stores static player info via **R2DBC** for non-blocking SQL  
 
-🧠 Notes
-double is used for player balance (use null-safe helpers).
+---
 
-MongoDB is used for game state due to dynamic and nested nature of gameplay.
+### 🐳 Docker Compose Environment Overview
 
-MySQL stores static player info with R2DBC (non-blocking SQL).
+The app uses these services with these environment variables and ports:
 
-👨‍💻 Author
-Adrià VH
-🔗 GitHub
+- **MongoDB**  
+  - Username: `root`  
+  - Password: `root`  
+  - Port: `27017`  
+
+- **Mongo Express** (MongoDB web UI)  
+  - Username: `root`  
+  - Password: `root`  
+  - Port: `8081`  
+
+- **MySQL**  
+  - Root password: `root`  
+  - Database: `blackjack`  
+  - User password: `root`  
+  - Port mapping: `3307` (host) → `3306` (container)
+
+---
+
+### 👨‍💻 Author
+
+Adrià VH  
+🔗 [GitHub](https://github.com/AdriaVH/5.1-Spring_Advanced-Blackjack-N1)
