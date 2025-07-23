@@ -6,16 +6,16 @@ A reactive Blackjack game API using Spring WebFlux, R2DBC with MySQL, MongoDB fo
 
 ## 📦 Tech Stack
 
-- **Java 21**
-- **Spring Boot 3.2.4**
-- **Spring WebFlux**
-- **R2DBC (MySQL)** for Player persistence
-- **MongoDB (Reactive)** for Game state
-- **Maven** for dependency and build management
-- **Lombok** for boilerplate reduction
-- **OpenAPI/Swagger** for API documentation
-- **Docker Compose** for local DB setup
-- **JUnit 5**, **Mockito**, **Reactor Test** for testing
+- **Java 21** (from `<java.version>21</java.version>`)
+- **Spring Boot 3.2.4** (parent version)
+- **Spring WebFlux** (`spring-boot-starter-webflux`)
+- **R2DBC MySQL 1.0.2** (`io.asyncer:r2dbc-mysql:1.0.2`) for reactive MySQL player persistence
+- **MongoDB Reactive** (`spring-boot-starter-data-mongodb-reactive`) for game state storage
+- **Maven** (project & build management)
+- **Lombok 1.18.30** for boilerplate code reduction
+- **OpenAPI/Swagger 2.3.0** (`springdoc-openapi-starter-webflux-ui`) for API documentation
+- **JUnit 5**, **Mockito 5.5.0**, **Reactor Test** for testing
+
 
 ---
 
