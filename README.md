@@ -235,4 +235,4 @@ The app uses these services with these environment variables and ports:
 ### 👨‍💻 Author
 
 Adrià VH  
-🔗 [GitHub](https://github.com/AdriaVH/5.1-Spring_Advanced-Blackjack-N1)
+🔗 [GitHub](https://github.com/AdriaVH)
