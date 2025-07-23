@@ -24,21 +24,19 @@ A reactive Blackjack game API using Spring WebFlux, R2DBC with MySQL, MongoDB fo
 S05T01N01/
 ├── src/
 │   ├── main/
-│   │   ├── java/
-│   │   │   └── cat/itacademy/s05/t01/n01/S05T01N01/
-│   │   │       ├── controllers/                      # REST controllers for Player and Game APIs
-│   │   │       ├── DTOs/
-│   │   │       │   ├── requests/                     # Request DTOs
-│   │   │       │   ├── responses/                    # Response DTOs
-│   │   │       │   └── mappers/                      # DTO mappers and converters
-│   │   │       ├── exceptions/                       # Custom exceptions handling
-│   │   │       ├── models/                           # Entity models (Player, Game, Deck, Card)
-│   │   │       ├── repositories/                     # Reactive repositories for MongoDB and MySQL
-│   │   │       ├── services/                         # Business logic services
-│   │   │       ├── utils/                            # Utility classes and helpers
-│   │   │       └── S05T01N01Application.java         # Main Spring Boot application entry point
-│   │   └── resources/
-│   │       └── ...                                   # Application internal resources (if any)
+│   │   └── java/
+│   │        └── cat/itacademy/s05/t01/n01/S05T01N01/
+│   │            ├── controllers/                      # REST controllers for Player and Game APIs
+│   │            ├── DTOs/
+│   │            │   ├── requests/                     # Request DTOs
+│   │            │   ├── responses/                    # Response DTOs
+│   │            │   └── mappers/                      # DTO mappers and converters
+│   │            ├── exceptions/                       # Custom exceptions handling
+│   │            ├── models/                           # Entity models (Player, Game, Deck, Card)
+│   │            ├── repositories/                     # Reactive repositories for MongoDB and MySQL
+│   │            ├── services/                         # Business logic services
+│   │            ├── utils/                            # Utility classes and helpers
+│   │            └── S05T01N01Application.java         # Main Spring Boot application entry point
 │   └── test/
 │       └── java/
 │           └── cat/itacademy/s05/t01/n01/S05T01N01/
