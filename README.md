@@ -107,6 +107,91 @@ After running the app, access API docs here:
 
 ---
 ---
+# TASK 5.1 API Blackjack amb Spring Boot Reactiu
+
+## 📖 Descripció
+
+En aquest exercici pràctic, crearem una **API en Java amb Spring Boot** per a un joc de Blackjack.  
+L'API gestionarà informació en dues bases de dades diferents: **MongoDB** i **MySQL**.  
+El joc inclourà totes les funcionalitats bàsiques per jugar: gestió de jugadors, mans de cartes i regles del joc.
+
+La aplicació estarà ben documentada i testada amb eines com README.md i Swagger.
+
+---
+
+## 🚦 Nivell 1: Implementació Bàsica
+
+- Desenvolupament d'una aplicació **reactiva** amb Spring WebFlux.  
+- Configuració de **MongoDB reactiva** i implementació de controladors i serveis reactius.  
+- Gestió global d'excepcions amb un `GlobalExceptionHandler`.  
+- Configuració per utilitzar dos esquemes de bases de dades: **MySQL** i **MongoDB**.  
+- Proves unitàries per almenys un controlador i un servei amb **JUnit** i **Mockito**.  
+- Documentació automàtica de l’API amb **Swagger**.
+
+---
+
+## 🛠️ Passos a seguir
+
+1. **Disseny de l'API:**  
+   Defineix els endpoints per gestionar el joc: crear partida, jugar, obtenir detalls, etc.
+
+2. **Connexió a les bases de dades:**  
+   Configura la connexió a MongoDB i MySQL.  
+   Crea les entitats Java per representar les dades del joc.
+
+3. **Proves unitàries:**  
+   Escriu proves amb JUnit i Mockito per verificar la correcta funcionalitat de l’API i la persistència.
+
+---
+
+## 🎯 Endpoints per al joc
+
+### Crear partida  
+- **Mètode:** `POST`  
+- **Endpoint:** `/game/new`  
+- **Cos de la sol·licitud:** Nom del jugador nou  
+- **Resposta exitosa:** `201 Created` amb info de la partida creada
+
+### Obtenir detalls de partida  
+- **Mètode:** `GET`  
+- **Endpoint:** `/game/{id}`  
+- **Paràmetres:** Identificador de la partida (`id`)  
+- **Resposta exitosa:** `200 OK` amb els detalls de la partida
+
+### Realitzar jugada  
+- **Mètode:** `POST`  
+- **Endpoint:** `/game/{id}/play`  
+- **Paràmetres:** Identificador de la partida (`id`)  
+- **Cos de la sol·licitud:** Tipus de jugada i quantitat apostada  
+- **Resposta exitosa:** `200 OK` amb resultat de la jugada i estat actual
+
+### Eliminar partida  
+- **Mètode:** `DELETE`  
+- **Endpoint:** `/game/{id}/delete`  
+- **Paràmetres:** Identificador de la partida (`id`)  
+- **Resposta exitosa:** `204 No Content` si s'elimina correctament
+
+### Obtenir rànquing de jugadors  
+- **Mètode:** `GET`  
+- **Endpoint:** `/ranking`  
+- **Resposta exitosa:** `200 OK` amb llista ordenada per posició i puntuació
+
+### Canviar nom del jugador  
+- **Mètode:** `PUT`  
+- **Endpoint:** `/player/{playerId}`  
+- **Paràmetres:** Identificador del jugador (`playerId`)  
+- **Cos de la sol·licitud:** Nou nom del jugador  
+- **Resposta exitosa:** `200 OK` amb informació actualitzada del jugador
+
+---
+
+💡 **Consell:**  
+Per als endpoints que requereixin cos de la sol·licitud, assegura't d'enviar JSON en format correcte per a la facilitat d'ús i integració.
+
+---
+
+Espero que aquesta versió t’agradi! Vols que t'ajudi també a afegir exemples de cossos JSON per a cada endpoint?
+
 
 ### ✅ Testing
 
