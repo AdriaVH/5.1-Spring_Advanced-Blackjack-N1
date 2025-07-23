@@ -26,20 +26,32 @@ S05T01N01/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── cat/itacademy/s05/t01/n01/S05T01N01/
-│   │   │       ├── controllers/       # REST controllers for Player and Game APIs
-│   │   │       ├── DTOs/              # Data Transfer Objects (requests, responses, mappers)
-│   │   │       ├── exceptions/        # Custom exceptions
-│   │   │       ├── models/            # Entity models (Player, Game)
-│   │   │       ├── repositories/      # Reactive repositories for MongoDB and MySQL
-│   │   │       ├── services/          # Business logic services
-│   │   │       └── S05T01N01Application.java  # Main Spring Boot application
+│   │   │       ├── controllers/                      # REST controllers for Player and Game APIs
+│   │   │       ├── DTOs/
+│   │   │       │   ├── requests/                     # Request DTOs
+│   │   │       │   ├── responses/                    # Response DTOs
+│   │   │       │   └── mappers/                      # DTO mappers and converters
+│   │   │       ├── exceptions/                       # Custom exceptions handling
+│   │   │       ├── models/                           # Entity models including (Player, Game, Deck, Card)
+│   │   │       ├── repositories/                     # Reactive repositories for MongoDB and MySQL
+│   │   │       ├── services/                         # Business logic services
+│   │   │       └── S05T01N01Application.java         # Main Spring Boot application entry point
 │   │   └── resources/
-│   │       ├── application.yml        # Application configuration (DB, ports, etc.)
-│   │       └── init.sql               # MySQL DB initialization script
-│   └── test/                         # Test classes and integration tests
-├── docker-compose.yml               # Docker Compose file for MongoDB and MySQL
-├── pom.xml                         # Maven project file (dependencies & build)
-└── README.md                       # Project documentation (this file)
+│   │       ├── application.yml                       # Application configuration (DB, ports, etc.)
+│   │       └── init.sql                              # MySQL database initialization script
+│   └── test/
+│       └── java/
+│           └── cat/itacademy/s05/t01/n01/S05T01N01/
+│               ├── ExceptionTestController.java                     # Tests for exception handling controller
+│               ├── GameControllerIntegrationTest.java               # Integration tests for GameController
+│               ├── GameControllerTest.java                          # Unit tests for GameController
+│               ├── GameServiceTest.java                             # Unit tests for GameService logic
+│               ├── GlobalExceptionHandlerIntegrationTest.java       # Integration tests for global exception handling
+│               └── PlayerControllerIntegrationTest.java             # Integration tests for PlayerController
+├── docker-compose.yml                           # Docker Compose for MongoDB and MySQL containers
+├── pom.xml                                      # Maven project file (dependencies & build plugins)
+└── README.md                                    # Project documentation and instructions
+
 
  </pre>
 ## 🚀 Getting Started
