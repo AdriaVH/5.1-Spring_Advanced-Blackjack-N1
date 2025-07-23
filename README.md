@@ -48,6 +48,7 @@ S05T01N01/
 │               ├── GameServiceTest.java                             # Unit tests for GameService logic
 │               ├── GlobalExceptionHandlerIntegrationTest.java       # Integration tests for global exception handling
 │               └── PlayerControllerIntegrationTest.java             # Integration tests for PlayerController
+│
 ├── docker-compose.yml                           # Docker Compose for MongoDB and MySQL containers
 ├── pom.xml                                      # Maven project file (dependencies & build plugins)
 └── README.md                                    # Project documentation and instructions
