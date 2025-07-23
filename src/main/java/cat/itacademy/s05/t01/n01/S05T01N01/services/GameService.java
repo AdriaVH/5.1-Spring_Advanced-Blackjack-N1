@@ -50,10 +50,8 @@ public class GameService {
                 .flatMap(game -> {
 
                     if (gameMoveService.isGameOver(game)) {
-                        // Game is over, just return game without applying moves
                         return Mono.just(game);
                     }
-
                     return playerService.deductBetIfNeeded(game, request.betAmount())
                             .thenReturn(game);
                 })

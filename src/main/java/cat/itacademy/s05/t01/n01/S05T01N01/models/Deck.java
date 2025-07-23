@@ -47,7 +47,6 @@ public class Deck {
             throw new IllegalStateException("Deck is empty");
         }
         Card card = cards.remove(0);
-        // Return new Card instance with the same rank and suit, but specified faceUp visibility
         return new Card(card.rank(), card.suit(), faceUp);
     }
 }
