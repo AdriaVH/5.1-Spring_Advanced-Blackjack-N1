@@ -62,7 +62,7 @@ S05T01N01/
 
 ```bash
 git clone https://github.com/AdriaVH/5.1-Spring_Advanced-Blackjack-N1.git
-cd 5.1-Spring_Advanced-Blackjack-N
+cd 5.1-Spring_Advanced-Blackjack-N1
 ```
 ### 2️⃣ Start the databases (MySQL + MongoDB)
 ```bash
