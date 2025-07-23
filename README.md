@@ -20,7 +20,7 @@ A reactive Blackjack game API using Spring WebFlux, R2DBC with MySQL, MongoDB fo
 ---
 
 ### 📁 Project Structure
-<pre> ```plaintext Your folder structure here 
+<pre> 
 S05T01N01/
 ├── src/
 │   ├── main/
@@ -41,7 +41,7 @@ S05T01N01/
 ├── pom.xml                         # Maven project file (dependencies & build)
 └── README.md                       # Project documentation (this file)
 
-``` </pre>
+ </pre>
 ## 🚀 Getting Started
 
 ### 1️⃣ Clone the repo
