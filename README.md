@@ -75,20 +75,26 @@ docker-compose up -d
 
 ### 🎮 `/games`
 
-| Method | Endpoint           | Description                 |
-|--------|--------------------|-----------------------------|
-| POST   | `/games`           | Create new game             |
-| GET    | `/games/{id}`      | Get game details            |
-| POST   | `/games/{id}/play` | Make a move (HIT / STAND)   |
-| DELETE | `/games/{id}`      | Delete game                 |
+| Method | Endpoint           | Description               |
+|--------|--------------------|---------------------------|
+| POST   | `/games`           | Create new game           |
+| GET    | `/games/{id}`      | Get game details          |
+| POST   | `/games/{id}/play` | Make a move (HIT / STAND) |
+| DELETE | `/games/{id}`      | Delete game               |
 
 ### 👤 `/player`
 
-| Method | Endpoint         | Description                  |
-|--------|------------------|------------------------------|
-| POST   | `/player`        | Create new player            |
-| PUT    | `/player/{id}`   | Update player name           |
-| GET    | `/ranking`       | Get win-rate ranking of players |
+| Method | Endpoint         | Description            |
+|--------|------------------|------------------------|
+| POST   | `/player`        | Create new player      |
+| PUT    | `/player/{id}`   | Update player name     |
+
+### 📊 `/ranking`
+
+| Method | Endpoint    | Description                                   |
+|--------|-------------|-----------------------------------------------|
+| GET    | `/ranking`  | Get players' ranking and their win rate       |
+
 
 
 ### 📚 Swagger UI
