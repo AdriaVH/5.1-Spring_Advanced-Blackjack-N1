@@ -185,14 +185,6 @@ La aplicació estarà ben documentada i testada amb eines com README.md i Swagge
 
 ---
 
-💡 **Consell:**  
-Per als endpoints que requereixin cos de la sol·licitud, assegura't d'enviar JSON en format correcte per a la facilitat d'ús i integració.
-
----
-
-Espero que aquesta versió t’agradi! Vols que t'ajudi també a afegir exemples de cossos JSON per a cada endpoint?
-
-
 ### ✅ Testing
 
 Tests are written using:
