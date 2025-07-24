@@ -33,3 +33,19 @@ services:
       - 3307:3306
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    image: adriavh/blackjack-app:latest
+    build:
+      context: .
+    restart: on-failure
+    depends_on:
+      - mysql
+      - mongo
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_R2DBC_URL: r2dbc:mysql://mysql:3306/blackjack
+      SPRING_R2DBC_USERNAME: root
+      SPRING_R2DBC_PASSWORD: root
+      SPRING_DATA_MONGODB_URI: mongodb://root:root@mongo:27017/blackjack
